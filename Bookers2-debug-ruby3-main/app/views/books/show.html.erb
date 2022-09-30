@@ -16,15 +16,45 @@
             <% end %>
           </td>
           <td><%= link_to @book.title, @book %></td>
-          
+
           <td><%= @book.body %></td>
+
+          <td>
+          <% if @book.favorited_by?(current_user) %>
+            <p>
+              <%= link_to book_favorites_path(@book), method: :delete do %>
+                ♥<%= @book.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to book_favorites_path(@book), method: :post do %>
+                ♡<%= @book.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+        </td>
+
+        <td>
+          <p>コメント数：<%= @book.book_comments.count %></p>
+        </td>
+
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
-          
+
         </tr>
       </table>
+
+   
+
+      <%= form_with model: [@book, @book_comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', class: 'form-control' %>
+      <%= f.submit "送信" %>
+      <% end %>
+    
+
     </div>
   </div>
 </div>
