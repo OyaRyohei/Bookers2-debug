@@ -1,23 +1,26 @@
 class BooksController < ApplicationController
+  # ログインしていないと、閲覧できない
+  before_action :authenticate_user!
+  
+  # ログインユーザー以外は編集・削除できない
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
-    @new_book = Book.new
     @book = Book.find(params[:id])
-    @user = @book.user
     @book_comment = BookComment.new
+    @user = @book.user
   end
 
   def index
     @book = Book.new
     @books = Book.all
-    @book_comment = BookComment.new
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to book_path(@book.id), notice: "You have created book successfully."
+      redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
       render 'index'
@@ -52,5 +55,12 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+  
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
   end
 end
