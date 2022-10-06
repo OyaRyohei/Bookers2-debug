@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   # ログインしていないと、閲覧できない
   before_action :authenticate_user!
-  
+
   # ログインユーザー以外は編集・削除できない
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -14,7 +14,6 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
-    @favo_books = Book.includes(:favorite)
   end
 
   def create
@@ -57,7 +56,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
-  
+
   def ensure_correct_user
     @book = Book.find(params[:id])
     unless @book.user == current_user

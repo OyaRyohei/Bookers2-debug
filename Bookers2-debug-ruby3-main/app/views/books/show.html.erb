@@ -34,22 +34,22 @@
 
         </tr>
       </table>
-      
+
+      <!--コメント一覧-->
       <table>
         <tbody>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <%= render "book_comments/comments_index",book: @book, book_comment: book_comment %>
+          
+          <tr id="comments_area">
+            <%= render 'book_comments/comments_index', book: @book, book_comment: @book_comment %>
           </tr>
-          <% end %>
+          
         </tbody>
       </table>
 
-      <%= form_with model: [@book, @book_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', class: 'form-control' %>
-      <%= f.submit "送信" %>
-      <% end %>
-    
+      <!--コメントフォーム-->
+      <div class="new-comment">
+        <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
+      </div>
 
     </div>
   </div>
