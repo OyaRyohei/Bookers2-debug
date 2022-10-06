@@ -36,15 +36,14 @@
       </table>
 
       <!--コメント一覧-->
-      <table>
-        <tbody>
-          
-          <tr id="comments_area">
+      <div id="comments_area">
+      
             <%= render 'book_comments/comments_index', book: @book, book_comment: @book_comment %>
           </tr>
           
         </tbody>
       </table>
+      </div>
 
       <!--コメントフォーム-->
       <div class="new-comment">
