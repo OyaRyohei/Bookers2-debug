@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :book_comments, dependent: :destroy
 
   validates :title,presence:true
@@ -9,7 +10,7 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
