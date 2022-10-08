@@ -106,9 +106,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    kaminari (0.17.0)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -262,7 +259,6 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  kaminari (~> 0.17.0)
   listen (~> 3.3)
   net-smtp
   puma (~> 5.0)
