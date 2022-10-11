@@ -12,7 +12,9 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
     @user = @book.user
-    impressionist(@book, nil, unique: [:session_hash])
+    impressionist(@user, nil, :unique => [:session_hash])
+
+    @book_views = @user.impressionist_count
   end
 
   def index
@@ -20,8 +22,8 @@ class BooksController < ApplicationController
     to  = Time.current.at_end_of_day
     # １週間前まで
     from  = (to - 6.day).at_beginning_of_day
-    @books = Book.all.sort {|a,b| 
-      b.favorites.where(created_at: from...to).size <=> 
+    @books = Book.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
       a.favorites.where(created_at: from...to).size
     }
      @book = Book.new
@@ -73,9 +75,5 @@ class BooksController < ApplicationController
     unless @book.user == current_user
       redirect_to books_path
     end
-  end
-  
-  def show
-    @book = Book.find(params[:id])
   end
 end

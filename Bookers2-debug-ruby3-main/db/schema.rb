@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2022_10_11_064330) do
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_favorites_on_book_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -123,7 +125,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_064330) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "title"
     t.string "name"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
@@ -134,4 +135,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_064330) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "books"
+  add_foreign_key "favorites", "users"
 end
