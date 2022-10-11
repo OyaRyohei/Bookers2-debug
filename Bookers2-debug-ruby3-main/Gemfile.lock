@@ -103,6 +103,8 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -169,10 +171,6 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
-    ransack (3.2.1)
-      activerecord (>= 6.1.5)
-      activesupport (>= 6.1.5)
-      i18n
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -258,12 +256,12 @@ DEPENDENCIES
   factory_bot_rails
   faker
   image_processing (~> 1.2)
+  impressionist
   jbuilder (~> 2.7)
   listen (~> 3.3)
   net-smtp
   puma (~> 5.0)
   rails (~> 6.1.4)
-  ransack
   rspec-rails
   sass-rails (>= 6)
   spring
