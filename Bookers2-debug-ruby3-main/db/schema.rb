@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2022_10_11_080939) do
     t.string "title"
     t.text "body"
     t.integer "user_id"
+    t.float "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count"
   end
 
   create_table "chats", force: :cascade do |t|

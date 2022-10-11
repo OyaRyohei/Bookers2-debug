@@ -9,25 +9,22 @@
   </div>
   
   <!--レビュー評価-->
-  <% if book.id === nil %>
-    <div class="form-group" id="star">
-      <%= f.label :rate %>
-      <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
-    </div>
-    
-    <<script>
+ <div class="form-group row" id="star">
+    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
   $('#star').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
 
-    scoreName: 'comment[star]',
+    scoreName: 'book[rate]',
     half: false,
   });
   </script>  
-  <% else %>
-    <%= render "static_rate", book: book %>
-  <% end %>
   <!--/レビュー評価-->
   
   <div class="form-group">

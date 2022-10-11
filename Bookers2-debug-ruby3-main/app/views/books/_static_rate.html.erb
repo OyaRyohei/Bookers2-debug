@@ -1,11 +1,16 @@
 <div id="rate_<%= book.id %>" class="form-group"></div>
 <script>
-      $('#star-rate<%= comment.id%>').raty({
-        size      : 36,
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        half      : false,
-        readOnly: true,
-        score: <%= comment.star %>,
-      });
-    </script>
+$(document).on('turbolinks:load', function() {
+  $('#rate_<%= book.id %>').empty();
+  $('#rate_<%= book.id %>').raty({
+    size: 20,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= book.rate %>,
+  });
+});
+</script>
+
