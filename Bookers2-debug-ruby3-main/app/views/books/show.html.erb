@@ -30,6 +30,8 @@
         <td>
           <p class="view-count">閲覧数: <%= @book.view_counts.count %></p>
         </td>
+        
+        <td><%= render "static_rate", book: @book %></td>
 
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>

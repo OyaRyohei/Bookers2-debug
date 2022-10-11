@@ -1,0 +1,11 @@
+<div id="rate_<%= book.id %>" class="form-group"></div>
+<script>
+      $('#star-rate<%= comment.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        score: <%= comment.star %>,
+      });
+    </script>
