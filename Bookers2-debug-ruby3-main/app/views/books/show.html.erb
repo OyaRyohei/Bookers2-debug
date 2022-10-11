@@ -28,7 +28,7 @@
         </td>
 
         <td>
-          <p>閲覧数：<%= number_with_delimiter(@book_views) %></p>
+          <p class="view-count">閲覧数: <%= @book.view_counts.count %></p>
         </td>
 
           <% if @book.user == current_user %>

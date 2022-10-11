@@ -5,16 +5,13 @@ class BooksController < ApplicationController
   # ログインユーザー以外は編集・削除できない
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
-  # 同じ人が複数回アクセスしても1PVとカウントする
-  impressionist :actions=> [:show]
-
   def show
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
     @user = @book.user
-    impressionist(@user, nil, :unique => [:session_hash])
-
-    @book_views = @user.impressionist_count
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def index
